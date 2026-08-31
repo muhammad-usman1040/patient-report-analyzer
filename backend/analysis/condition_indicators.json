@@ -22,14 +22,22 @@
       {"parameter": "Fasting_Glucose", "direction": "high", "weight": 0.4},
       {"parameter": "HbA1c", "direction": "high", "weight": 0.5},
       {"parameter": "Random_Glucose", "direction": "high", "weight": 0.1}
-    ]
+    ],
+    "exclusions": {
+      "HbA1c": {"max_below": 6.5},
+      "Fasting_Glucose": {"max_below": 126}
+    }
   },
   "Pre_Diabetes": {
     "threshold": 0.5,
     "indicators": [
       {"parameter": "Fasting_Glucose", "direction": "high", "weight": 0.5},
       {"parameter": "HbA1c", "direction": "high", "weight": 0.5}
-    ]
+    ],
+    "exclusions": {
+      "HbA1c": {"min_above": 6.5},
+      "Fasting_Glucose": {"min_above": 126}
+    }
   },
   "Hypothyroidism": {
     "threshold": 0.6,
@@ -92,13 +100,28 @@
       {"parameter": "Uric_Acid", "direction": "high", "weight": 1.0}
     ]
   },
-  "Electrolyte_Imbalance": {
-    "threshold": 0.5,
+  "Hyponatremia": {
+    "threshold": 0.7,
     "indicators": [
-      {"parameter": "Sodium", "direction": "low", "weight": 0.25},
-      {"parameter": "Sodium", "direction": "high", "weight": 0.25},
-      {"parameter": "Potassium", "direction": "low", "weight": 0.25},
-      {"parameter": "Potassium", "direction": "high", "weight": 0.25}
+      {"parameter": "Sodium", "direction": "low", "weight": 1.0}
+    ]
+  },
+  "Hypernatremia": {
+    "threshold": 0.7,
+    "indicators": [
+      {"parameter": "Sodium", "direction": "high", "weight": 1.0}
+    ]
+  },
+  "Hypokalemia": {
+    "threshold": 0.7,
+    "indicators": [
+      {"parameter": "Potassium", "direction": "low", "weight": 1.0}
+    ]
+  },
+  "Hyperkalemia": {
+    "threshold": 0.7,
+    "indicators": [
+      {"parameter": "Potassium", "direction": "high", "weight": 1.0}
     ]
   }
 }

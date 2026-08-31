@@ -92,11 +92,31 @@ def evaluate_possible_conditions(flagged_data: Dict[str, Any]) -> Dict[str, Any]
         if possible_score == 0:
             continue
 
-        # Normalise: confidence = actual / total_possible_weight_of_condition
-        total_weight = sum(i["weight"] for i in config["indicators"])
-        confidence = actual_score / total_weight
+        # Confidence = score of matched indicators / score of all indicators present in report.
+        confidence = actual_score / possible_score
 
         if confidence >= threshold:
+            # Apply exclusions: skip condition if any parameter value crosses a boundary
+            # that belongs to a different (more/less severe) condition.
+            # E.g. Pre_Diabetes is excluded when Fasting_Glucose >= 126 (that's Diabetes).
+            exclusions = config.get("exclusions", {})
+            excluded = False
+            for exc_param, exc_rule in exclusions.items():
+                param_data = flagged_data.get(exc_param)
+                if param_data is None:
+                    continue
+                val = param_data.get("value")
+                if val is None:
+                    continue
+                if "min_above" in exc_rule and val >= exc_rule["min_above"]:
+                    excluded = True
+                    break
+                if "max_below" in exc_rule and val < exc_rule["max_below"]:
+                    excluded = True
+                    break
+            if excluded:
+                continue
+
             matched_conditions.append({
                 "name": condition_name,
                 "confidence": round(confidence, 3),

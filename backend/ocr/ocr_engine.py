@@ -6,6 +6,7 @@ try:
     import pytesseract
     from PIL import Image
     import fitz  # PyMuPDF
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
     TESSERACT_AVAILABLE = True
 except ImportError:
     TESSERACT_AVAILABLE = False

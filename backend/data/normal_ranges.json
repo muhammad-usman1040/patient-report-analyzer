@@ -10,6 +10,12 @@
       "unit": "x10^9/L",
       "general": {"min": 4.0, "max": 11.0}
     },
+    "RBC": {
+      "unit": "x10^6/uL",
+      "male": {"min": 4.5, "max": 5.9},
+      "female": {"min": 4.0, "max": 5.2},
+      "general": {"min": 4.0, "max": 5.9}
+    },
     "Platelets": {
       "unit": "x10^9/L",
       "general": {"min": 150, "max": 400}
