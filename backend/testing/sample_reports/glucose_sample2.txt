@@ -1,0 +1,12 @@
+BLOOD GLUCOSE ASSESSMENT
+Patient: Sara Ali (Female, 44 yrs)
+Date: 2026-08-31
+Lab: HealthFirst Labs
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+Fasting Blood Sugar     108         mg/dL       70 - 100
+HbA1c                   6.1         %           4.0 - 5.6
+Random Blood Sugar      165         mg/dL       70 - 140
+
+INTERPRETATION: FBS borderline elevated, HbA1c in pre-diabetic range.

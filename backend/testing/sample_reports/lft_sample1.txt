@@ -1,0 +1,16 @@
+LIVER FUNCTION TESTS (LFT)
+Patient: Nasir Hussain (Male, 48 yrs)
+Date: 2026-08-31
+Lab: Excel Labs
+
+TEST                            RESULT      UNIT        REFERENCE RANGE
+--------------------------------------------------------------------------
+ALT (SGPT)                      98          U/L         7 - 56
+AST (SGOT)                      72          U/L         10 - 40
+ALP (Alkaline Phosphatase)      180         U/L         44 - 147
+Total Bilirubin                 2.4         mg/dL       0.2 - 1.2
+Direct Bilirubin                0.9         mg/dL       0.0 - 0.3
+Albumin                         3.2         g/dL        3.5 - 5.0
+GGT                             95          U/L         8 - 61
+
+IMPRESSION: Hepatocellular injury pattern — elevated transaminases and bilirubin.

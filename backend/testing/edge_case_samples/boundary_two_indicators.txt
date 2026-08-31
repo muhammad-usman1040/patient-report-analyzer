@@ -1,0 +1,7 @@
+CBC PANEL
+Patient: Test Patient
+
+TEST                    RESULT      UNIT        REFERENCE
+-----------------------------------------------------------
+Hemoglobin              8.5         g/dL        13.5 - 17.5
+MCV                     72          fL          80 - 100

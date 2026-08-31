@@ -1,0 +1,19 @@
+URINE COMPLETE EXAMINATION (UCE / Urinalysis)
+Patient: Hamid Bashir (Male, 55 yrs)
+Date: 2026-08-31
+Lab: Akbar Hospital Lab
+
+PHYSICAL EXAMINATION
+Color: Yellow    Transparency: Turbid
+
+CHEMICAL EXAMINATION
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+pH                      8.5                     4.5 - 8.0
+Specific Gravity        1.028                   1.005 - 1.030
+Urine Protein           45          mg/dL       0 - 14
+Urine Glucose           30          mg/dL       0 - 15
+RBC Urine               8           /hpf        0 - 2
+WBC Urine               18          /hpf        0 - 5
+
+IMPRESSION: Proteinuria, hematuria, pyuria — UTI/glomerulonephritis screen recommended.

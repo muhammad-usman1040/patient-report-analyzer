@@ -1,0 +1,14 @@
+THYROID FUNCTION TESTS (TFT)
+Patient: Sobia Raza (Female, 39 yrs)
+Date: 2026-08-31
+Lab: Sina Lab Services
+
+TEST                            RESULT      UNIT        REFERENCE RANGE
+--------------------------------------------------------------------------
+TSH                             12.8        mIU/L       0.4 - 4.0
+T3                              55          ng/dL       80 - 200
+T4                              3.2         ug/dL       5.0 - 12.0
+Free T3                         1.9         pg/mL       2.3 - 4.2
+Free T4                         0.5         ng/dL       0.8 - 1.8
+
+IMPRESSION: Pattern consistent with primary hypothyroidism.

@@ -1,0 +1,104 @@
+{
+  "Iron_Deficiency_Anemia": {
+    "threshold": 0.6,
+    "indicators": [
+      {"parameter": "Hemoglobin", "direction": "low", "weight": 0.4},
+      {"parameter": "MCV", "direction": "low", "weight": 0.3},
+      {"parameter": "MCH", "direction": "low", "weight": 0.2},
+      {"parameter": "Hematocrit", "direction": "low", "weight": 0.1}
+    ]
+  },
+  "Vitamin_B12_Deficiency_Anemia": {
+    "threshold": 0.6,
+    "indicators": [
+      {"parameter": "Vitamin_B12", "direction": "low", "weight": 0.5},
+      {"parameter": "Hemoglobin", "direction": "low", "weight": 0.3},
+      {"parameter": "MCV", "direction": "high", "weight": 0.2}
+    ]
+  },
+  "Diabetes_Mellitus": {
+    "threshold": 0.6,
+    "indicators": [
+      {"parameter": "Fasting_Glucose", "direction": "high", "weight": 0.4},
+      {"parameter": "HbA1c", "direction": "high", "weight": 0.5},
+      {"parameter": "Random_Glucose", "direction": "high", "weight": 0.1}
+    ]
+  },
+  "Pre_Diabetes": {
+    "threshold": 0.5,
+    "indicators": [
+      {"parameter": "Fasting_Glucose", "direction": "high", "weight": 0.5},
+      {"parameter": "HbA1c", "direction": "high", "weight": 0.5}
+    ]
+  },
+  "Hypothyroidism": {
+    "threshold": 0.6,
+    "indicators": [
+      {"parameter": "TSH", "direction": "high", "weight": 0.5},
+      {"parameter": "Free_T4", "direction": "low", "weight": 0.3},
+      {"parameter": "T4", "direction": "low", "weight": 0.2}
+    ]
+  },
+  "Hyperthyroidism": {
+    "threshold": 0.6,
+    "indicators": [
+      {"parameter": "TSH", "direction": "low", "weight": 0.5},
+      {"parameter": "Free_T4", "direction": "high", "weight": 0.3},
+      {"parameter": "T4", "direction": "high", "weight": 0.2}
+    ]
+  },
+  "Dyslipidemia": {
+    "threshold": 0.5,
+    "indicators": [
+      {"parameter": "Total_Cholesterol", "direction": "high", "weight": 0.3},
+      {"parameter": "LDL", "direction": "high", "weight": 0.4},
+      {"parameter": "Triglycerides", "direction": "high", "weight": 0.2},
+      {"parameter": "HDL", "direction": "low", "weight": 0.1}
+    ]
+  },
+  "Chronic_Kidney_Disease": {
+    "threshold": 0.6,
+    "indicators": [
+      {"parameter": "Creatinine", "direction": "high", "weight": 0.4},
+      {"parameter": "BUN", "direction": "high", "weight": 0.3},
+      {"parameter": "eGFR", "direction": "low", "weight": 0.3}
+    ]
+  },
+  "Liver_Disease": {
+    "threshold": 0.5,
+    "indicators": [
+      {"parameter": "ALT", "direction": "high", "weight": 0.35},
+      {"parameter": "AST", "direction": "high", "weight": 0.35},
+      {"parameter": "Total_Bilirubin", "direction": "high", "weight": 0.2},
+      {"parameter": "ALP", "direction": "high", "weight": 0.1}
+    ]
+  },
+  "Vitamin_D_Deficiency": {
+    "threshold": 0.7,
+    "indicators": [
+      {"parameter": "Vitamin_D", "direction": "low", "weight": 1.0}
+    ]
+  },
+  "Inflammation_Or_Infection": {
+    "threshold": 0.5,
+    "indicators": [
+      {"parameter": "CRP", "direction": "high", "weight": 0.6},
+      {"parameter": "ESR", "direction": "high", "weight": 0.4}
+    ]
+  },
+  "Hyperuricemia_Gout_Risk": {
+    "threshold": 0.7,
+    "indicators": [
+      {"parameter": "Uric_Acid", "direction": "high", "weight": 1.0}
+    ]
+  },
+  "Electrolyte_Imbalance": {
+    "threshold": 0.5,
+    "indicators": [
+      {"parameter": "Sodium", "direction": "low", "weight": 0.25},
+      {"parameter": "Sodium", "direction": "high", "weight": 0.25},
+      {"parameter": "Potassium", "direction": "low", "weight": 0.25},
+      {"parameter": "Potassium", "direction": "high", "weight": 0.25}
+    ]
+  }
+}

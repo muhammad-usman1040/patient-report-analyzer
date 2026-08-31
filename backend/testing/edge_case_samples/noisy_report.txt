@@ -1,0 +1,11 @@
+L4b R3p0rt - 0CR N01$y
+P@t!ent: J0hn D03
+D@te: 2O26-O8-3l
+%%% HEADER CORRUPTED %%%
+T3$T              R3$ULT    UN!T
+----------------------
+Hgb***error***        ??      ???
+Hemoglobin              8.5         g/dL
+W8C  ?????  K/uL
+PLT  @@@  K/uL
+%%% FOOTER CORRUPTED %%%

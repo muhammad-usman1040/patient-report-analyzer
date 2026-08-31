@@ -1,0 +1,72 @@
+{
+  "_code": "ur",
+  "upload": {
+    "title": "مریض رپورٹ تجزیہ کار",
+    "subtitle": "تجزیے کے لیے اپنی لیب رپورٹ اپ لوڈ کریں",
+    "uploadLabel": "رپورٹ اپ لوڈ کریں",
+    "dragDrop": "فائل یہاں کھینچیں یا براؤز کریں",
+    "supportedFormats": "معاون فارمیٹ: PDF، JPG، PNG، TXT",
+    "genderLabel": "جنس (اختیاری)",
+    "genderMale": "مرد",
+    "genderFemale": "عورت",
+    "ageLabel": "عمر (اختیاری)",
+    "agePlaceholder": "عمر درج کریں",
+    "outputFormatLabel": "آؤٹ پٹ فارمیٹ",
+    "outputFormatScreen": "اسکرین پر دیکھیں",
+    "outputFormatPDF": "PDF ڈاؤن لوڈ کریں",
+    "analyzeButton": "رپورٹ کا تجزیہ کریں",
+    "analyzing": "تجزیہ ہو رہا ہے...",
+    "loginPrompt": "تاریخ محفوظ کرنے کے لیے لاگ ان کریں",
+    "noFileSelected": "براہ کرم فائل منتخب کریں۔",
+    "analysisFailed": "تجزیہ ناکام ہوا۔",
+    "disclaimer": "یہ ٹول صرف معلوماتی مقاصد کے لیے ہے۔ نتائج طبی تشخیص نہیں ہیں۔"
+  },
+  "results": {
+    "title": "تجزیے کے نتائج",
+    "flaggedParams": "نشاندہی شدہ پیرامیٹرز",
+    "possibleConditions": "ممکنہ حالات",
+    "allNormal": "تمام اقدار معمول کی حد میں ہیں۔",
+    "insufficientEvidence": "دستیاب رپورٹ سے کوئی مخصوص حالت شناخت کرنے کے لیے ناکافی ثبوت۔",
+    "confidence": "اعتماد",
+    "supportingIndicators": "معاون اشارے",
+    "disclaimer": "یہ طبی تشخیص نہیں ہے۔ براہ کرم کسی اہل ڈاکٹر سے مشورہ کریں۔",
+    "downloadPDF": "PDF رپورٹ ڈاؤن لوڈ کریں",
+    "generatingPDF": "PDF بن رہی ہے…",
+    "pdfError": "PDF بنانے میں ناکامی۔ دوبارہ کوشش کریں۔",
+    "backToUpload": "ایک اور رپورٹ کا تجزیہ کریں",
+    "statusHigh": "زیادہ",
+    "statusLow": "کم",
+    "statusNormal": "معمول"
+  },
+  "history": {
+    "title": "رپورٹ تاریخ",
+    "noHistory": "کوئی رپورٹ نہیں ملی۔ شروع کرنے کے لیے رپورٹ اپ لوڈ کریں۔",
+    "date": "تاریخ",
+    "conditions": "ملی ہوئی حالات",
+    "allNormal": "سب معمول",
+    "viewDetails": "تفصیلات دیکھیں",
+    "loginRequired": "رپورٹ تاریخ دیکھنے کے لیے لاگ ان کریں۔",
+    "loading": "لوڈ ہو رہا ہے...",
+    "loadError": "تاریخ لوڈ نہ ہو سکی۔ دوبارہ کوشش کریں۔",
+    "trends": "پیرامیٹر ٹرینڈز"
+  },
+  "nav": {
+    "upload": "اپ لوڈ",
+    "history": "تاریخ",
+    "login": "لاگ ان",
+    "logout": "لاگ آؤٹ",
+    "register": "رجسٹر"
+  },
+  "auth": {
+    "loginTitle": "لاگ ان",
+    "registerTitle": "اکاؤنٹ بنائیں",
+    "emailLabel": "ای میل",
+    "passwordLabel": "پاس ورڈ",
+    "loginButton": "لاگ ان",
+    "registerButton": "رجسٹر",
+    "switchToRegister": "اکاؤنٹ نہیں ہے؟ رجسٹر کریں",
+    "switchToLogin": "پہلے سے اکاؤنٹ ہے؟ لاگ ان کریں",
+    "loginError": "غلط ای میل یا پاس ورڈ۔",
+    "registerError": "رجسٹریشن ناکام۔ ای میل پہلے سے استعمال میں ہو سکتی ہے۔"
+  }
+}

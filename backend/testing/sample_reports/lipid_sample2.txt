@@ -1,0 +1,14 @@
+LIPID PANEL
+Patient: Fatima Noor (Female, 38 yrs)
+Date: 2026-08-31
+Lab: Chughtai Labs
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+Total Cholesterol       185         mg/dL       0 - 200
+LDL                     95          mg/dL       0 - 100
+HDL                     55          mg/dL       50 - 999
+Triglycerides           130         mg/dL       0 - 150
+VLDL                    26          mg/dL       0 - 30
+
+COMMENT: All lipid parameters within acceptable range.

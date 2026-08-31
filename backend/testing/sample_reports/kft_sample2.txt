@@ -1,0 +1,13 @@
+RENAL FUNCTION TESTS
+Patient: Rukhsana Begum (Female, 42 yrs)
+Date: 2026-08-31
+Lab: Holy Family Hospital
+
+TEST                            RESULT      UNIT            REFERENCE RANGE
+-----------------------------------------------------------------------------
+Creatinine                      0.85        mg/dL           0.59 - 1.04
+Blood Urea Nitrogen             14          mg/dL           7 - 20
+Uric Acid                       4.8         mg/dL           2.4 - 6.0
+eGFR                            88          mL/min/1.73m2   60 - 9999
+
+IMPRESSION: Renal function within normal limits.

@@ -1,0 +1,57 @@
+{
+  "reports": [
+    {
+      "id": 1,
+      "report_date": "2025-01-15T10:30:00",
+      "conditions": ["Iron_Deficiency_Anemia", "Dyslipidemia"],
+      "result_state": "possible_conditions",
+      "parameters": [
+        {"name": "Hemoglobin", "value": 10.2, "unit": "g/dL", "status": "low"},
+        {"name": "MCV", "value": 72, "unit": "fL", "status": "low"},
+        {"name": "Total_Cholesterol", "value": 215, "unit": "mg/dL", "status": "high"},
+        {"name": "LDL", "value": 135, "unit": "mg/dL", "status": "high"}
+      ]
+    },
+    {
+      "id": 2,
+      "report_date": "2025-02-20T14:00:00",
+      "conditions": ["Iron_Deficiency_Anemia"],
+      "result_state": "possible_conditions",
+      "parameters": [
+        {"name": "Hemoglobin", "value": 11.5, "unit": "g/dL", "status": "low"},
+        {"name": "MCV", "value": 76, "unit": "fL", "status": "low"},
+        {"name": "Total_Cholesterol", "value": 192, "unit": "mg/dL", "status": "normal"},
+        {"name": "LDL", "value": 98, "unit": "mg/dL", "status": "normal"}
+      ]
+    },
+    {
+      "id": 3,
+      "report_date": "2025-03-28T09:15:00",
+      "conditions": [],
+      "result_state": "all_normal",
+      "parameters": [
+        {"name": "Hemoglobin", "value": 13.8, "unit": "g/dL", "status": "normal"},
+        {"name": "MCV", "value": 85, "unit": "fL", "status": "normal"},
+        {"name": "Total_Cholesterol", "value": 185, "unit": "mg/dL", "status": "normal"},
+        {"name": "LDL", "value": 90, "unit": "mg/dL", "status": "normal"}
+      ]
+    }
+  ],
+  "trends": {
+    "Hemoglobin": [
+      {"date": "2025-01-15", "value": 10.2},
+      {"date": "2025-02-20", "value": 11.5},
+      {"date": "2025-03-28", "value": 13.8}
+    ],
+    "Total_Cholesterol": [
+      {"date": "2025-01-15", "value": 215},
+      {"date": "2025-02-20", "value": 192},
+      {"date": "2025-03-28", "value": 185}
+    ],
+    "LDL": [
+      {"date": "2025-01-15", "value": 135},
+      {"date": "2025-02-20", "value": 98},
+      {"date": "2025-03-28", "value": 90}
+    ]
+  }
+}

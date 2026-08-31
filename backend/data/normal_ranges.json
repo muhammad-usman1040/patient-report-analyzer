@@ -1,0 +1,254 @@
+{
+  "CBC": {
+    "Hemoglobin": {
+      "unit": "g/dL",
+      "male": {"min": 13.5, "max": 17.5},
+      "female": {"min": 12.0, "max": 15.5},
+      "general": {"min": 12.0, "max": 17.5}
+    },
+    "WBC": {
+      "unit": "x10^9/L",
+      "general": {"min": 4.0, "max": 11.0}
+    },
+    "Platelets": {
+      "unit": "x10^9/L",
+      "general": {"min": 150, "max": 400}
+    },
+    "Hematocrit": {
+      "unit": "%",
+      "male": {"min": 41, "max": 53},
+      "female": {"min": 36, "max": 46},
+      "general": {"min": 36, "max": 53}
+    },
+    "MCV": {
+      "unit": "fL",
+      "general": {"min": 80, "max": 100}
+    },
+    "MCH": {
+      "unit": "pg",
+      "general": {"min": 27, "max": 33}
+    },
+    "MCHC": {
+      "unit": "g/dL",
+      "general": {"min": 32, "max": 36}
+    },
+    "Neutrophils": {
+      "unit": "%",
+      "general": {"min": 40, "max": 70}
+    },
+    "Lymphocytes": {
+      "unit": "%",
+      "general": {"min": 20, "max": 40}
+    },
+    "Monocytes": {
+      "unit": "%",
+      "general": {"min": 2, "max": 10}
+    },
+    "Eosinophils": {
+      "unit": "%",
+      "general": {"min": 1, "max": 6}
+    },
+    "Basophils": {
+      "unit": "%",
+      "general": {"min": 0, "max": 1}
+    }
+  },
+  "Glucose": {
+    "Fasting_Glucose": {
+      "unit": "mg/dL",
+      "general": {"min": 70, "max": 100}
+    },
+    "Random_Glucose": {
+      "unit": "mg/dL",
+      "general": {"min": 70, "max": 140}
+    },
+    "HbA1c": {
+      "unit": "%",
+      "general": {"min": 4.0, "max": 5.6}
+    }
+  },
+  "Lipid": {
+    "Total_Cholesterol": {
+      "unit": "mg/dL",
+      "general": {"min": 0, "max": 200}
+    },
+    "LDL": {
+      "unit": "mg/dL",
+      "general": {"min": 0, "max": 100}
+    },
+    "HDL": {
+      "unit": "mg/dL",
+      "male": {"min": 40, "max": 999},
+      "female": {"min": 50, "max": 999},
+      "general": {"min": 40, "max": 999}
+    },
+    "Triglycerides": {
+      "unit": "mg/dL",
+      "general": {"min": 0, "max": 150}
+    },
+    "VLDL": {
+      "unit": "mg/dL",
+      "general": {"min": 0, "max": 30}
+    }
+  },
+  "LFT": {
+    "ALT": {
+      "unit": "U/L",
+      "male": {"min": 7, "max": 56},
+      "female": {"min": 7, "max": 45},
+      "general": {"min": 7, "max": 56}
+    },
+    "AST": {
+      "unit": "U/L",
+      "general": {"min": 10, "max": 40}
+    },
+    "ALP": {
+      "unit": "U/L",
+      "general": {"min": 44, "max": 147}
+    },
+    "Total_Bilirubin": {
+      "unit": "mg/dL",
+      "general": {"min": 0.2, "max": 1.2}
+    },
+    "Direct_Bilirubin": {
+      "unit": "mg/dL",
+      "general": {"min": 0.0, "max": 0.3}
+    },
+    "Albumin": {
+      "unit": "g/dL",
+      "general": {"min": 3.5, "max": 5.0}
+    },
+    "GGT": {
+      "unit": "U/L",
+      "male": {"min": 8, "max": 61},
+      "female": {"min": 5, "max": 36},
+      "general": {"min": 5, "max": 61}
+    }
+  },
+  "KFT": {
+    "Creatinine": {
+      "unit": "mg/dL",
+      "male": {"min": 0.74, "max": 1.35},
+      "female": {"min": 0.59, "max": 1.04},
+      "general": {"min": 0.59, "max": 1.35}
+    },
+    "BUN": {
+      "unit": "mg/dL",
+      "general": {"min": 7, "max": 20}
+    },
+    "Uric_Acid": {
+      "unit": "mg/dL",
+      "male": {"min": 3.4, "max": 7.0},
+      "female": {"min": 2.4, "max": 6.0},
+      "general": {"min": 2.4, "max": 7.0}
+    },
+    "eGFR": {
+      "unit": "mL/min/1.73m2",
+      "general": {"min": 60, "max": 9999}
+    }
+  },
+  "Thyroid": {
+    "TSH": {
+      "unit": "mIU/L",
+      "general": {"min": 0.4, "max": 4.0}
+    },
+    "T3": {
+      "unit": "ng/dL",
+      "general": {"min": 80, "max": 200}
+    },
+    "T4": {
+      "unit": "ug/dL",
+      "general": {"min": 5.0, "max": 12.0}
+    },
+    "Free_T3": {
+      "unit": "pg/mL",
+      "general": {"min": 2.3, "max": 4.2}
+    },
+    "Free_T4": {
+      "unit": "ng/dL",
+      "general": {"min": 0.8, "max": 1.8}
+    }
+  },
+  "Urinalysis": {
+    "pH": {
+      "unit": "",
+      "general": {"min": 4.5, "max": 8.0}
+    },
+    "Specific_Gravity": {
+      "unit": "",
+      "general": {"min": 1.005, "max": 1.030}
+    },
+    "Protein": {
+      "unit": "mg/dL",
+      "general": {"min": 0, "max": 14}
+    },
+    "Glucose_Urine": {
+      "unit": "mg/dL",
+      "general": {"min": 0, "max": 15}
+    },
+    "RBC_Urine": {
+      "unit": "/hpf",
+      "general": {"min": 0, "max": 2}
+    },
+    "WBC_Urine": {
+      "unit": "/hpf",
+      "general": {"min": 0, "max": 5}
+    }
+  },
+  "Vitamins": {
+    "Vitamin_D": {
+      "unit": "ng/mL",
+      "general": {"min": 30, "max": 100}
+    },
+    "Vitamin_B12": {
+      "unit": "pg/mL",
+      "general": {"min": 200, "max": 900}
+    },
+    "Folate": {
+      "unit": "ng/mL",
+      "general": {"min": 2.7, "max": 17.0}
+    }
+  },
+  "Electrolytes": {
+    "Sodium": {
+      "unit": "mEq/L",
+      "general": {"min": 136, "max": 145}
+    },
+    "Potassium": {
+      "unit": "mEq/L",
+      "general": {"min": 3.5, "max": 5.1}
+    },
+    "Chloride": {
+      "unit": "mEq/L",
+      "general": {"min": 98, "max": 107}
+    },
+    "Bicarbonate": {
+      "unit": "mEq/L",
+      "general": {"min": 22, "max": 29}
+    },
+    "Calcium": {
+      "unit": "mg/dL",
+      "general": {"min": 8.5, "max": 10.5}
+    },
+    "Magnesium": {
+      "unit": "mg/dL",
+      "general": {"min": 1.7, "max": 2.2}
+    },
+    "Phosphorus": {
+      "unit": "mg/dL",
+      "general": {"min": 2.5, "max": 4.5}
+    }
+  },
+  "Inflammation": {
+    "CRP": {
+      "unit": "mg/L",
+      "general": {"min": 0, "max": 10}
+    },
+    "ESR": {
+      "unit": "mm/hr",
+      "male": {"min": 0, "max": 15},
+      "female": {"min": 0, "max": 20},
+      "general": {"min": 0, "max": 20}
+    }
+  }
+}

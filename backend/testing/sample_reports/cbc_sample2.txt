@@ -1,0 +1,22 @@
+COMPLETE BLOOD COUNT (CBC)
+Patient: Jane Smith (Female, 28 yrs)
+Date: 2026-08-31
+Lab: National Health Lab
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+Hemoglobin              13.8        g/dL        12.0 - 15.5
+WBC                     14.5        x10^9/L     4.0 - 11.0
+RBC                     4.6         x10^9/L     4.0 - 5.2
+Platelets               520         x10^9/L     150 - 400
+Hematocrit              42          %           36 - 46
+MCV                     88          fL          80 - 100
+MCH                     29          pg          27 - 33
+MCHC                    34          g/dL        32 - 36
+Neutrophils             82          %           40 - 70
+Lymphocytes             12          %           20 - 40
+Monocytes               5           %           2 - 10
+Eosinophils             1           %           1 - 6
+Basophils               0           %           0 - 1
+
+NOTE: Leukocytosis with thrombocytosis — possible infection/inflammation.

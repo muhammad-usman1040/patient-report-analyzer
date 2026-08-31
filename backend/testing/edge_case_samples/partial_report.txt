@@ -1,0 +1,7 @@
+PARTIAL LAB REPORT
+Patient: Test Patient
+
+TEST                    RESULT      UNIT
+-----------------------------------------
+Hemoglobin              13.5        g/dL
+TSH                     2.10        mIU/L

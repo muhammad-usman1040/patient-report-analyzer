@@ -1,0 +1,11 @@
+CRP AND ESR
+Patient: Mariam Zahid (Female, 24 yrs)
+Date: 2026-08-31
+Lab: National Institute of Health
+
+TEST                                RESULT      UNIT        REFERENCE RANGE
+-----------------------------------------------------------------------------
+C Reactive Protein                  3           mg/L        0 - 10
+Erythrocyte Sedimentation Rate      8           mm/hr       0 - 20
+
+NOTE: Inflammatory markers within normal limits.

@@ -1,0 +1,72 @@
+{
+  "_code": "en",
+  "upload": {
+    "title": "Patient Report Analyzer",
+    "subtitle": "Upload your lab report for analysis",
+    "uploadLabel": "Upload Report",
+    "dragDrop": "Drag & drop your file here, or click to browse",
+    "supportedFormats": "Supported: PDF, JPG, PNG, TXT",
+    "genderLabel": "Gender (optional)",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "ageLabel": "Age (optional)",
+    "agePlaceholder": "Enter age",
+    "outputFormatLabel": "Output Format",
+    "outputFormatScreen": "View on screen",
+    "outputFormatPDF": "Download as PDF",
+    "analyzeButton": "Analyze Report",
+    "analyzing": "Analyzing...",
+    "loginPrompt": "Log in to save your history",
+    "noFileSelected": "Please select a file.",
+    "analysisFailed": "Analysis failed.",
+    "disclaimer": "This tool is for informational purposes only. Results are not a medical diagnosis."
+  },
+  "results": {
+    "title": "Analysis Results",
+    "flaggedParams": "Flagged Parameters",
+    "possibleConditions": "Possible Conditions",
+    "allNormal": "All values are within normal range.",
+    "insufficientEvidence": "Insufficient evidence to identify a specific condition from the available report.",
+    "confidence": "Confidence",
+    "supportingIndicators": "Supporting Indicators",
+    "disclaimer": "This is not a medical diagnosis. Please consult a qualified doctor.",
+    "downloadPDF": "Download PDF Report",
+    "generatingPDF": "Generating…",
+    "pdfError": "PDF generation failed. Please try again.",
+    "backToUpload": "Analyze Another Report",
+    "statusHigh": "High",
+    "statusLow": "Low",
+    "statusNormal": "Normal"
+  },
+  "history": {
+    "title": "Report History",
+    "noHistory": "No reports found. Upload a report to get started.",
+    "date": "Date",
+    "conditions": "Conditions Found",
+    "allNormal": "All Normal",
+    "viewDetails": "View Details",
+    "loginRequired": "Please log in to view your report history.",
+    "loading": "Loading...",
+    "loadError": "Failed to load history. Please try again.",
+    "trends": "Parameter Trends"
+  },
+  "nav": {
+    "upload": "Upload",
+    "history": "History",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "registerTitle": "Create Account",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "switchToRegister": "Don't have an account? Register",
+    "switchToLogin": "Already have an account? Login",
+    "loginError": "Invalid email or password.",
+    "registerError": "Registration failed. Email may already be in use."
+  }
+}

@@ -1,0 +1,26 @@
+# Patient Report Analyzer — Backend Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web framework
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+
+# Data validation
+pydantic[email]==2.7.1
+
+# Authentication — 100% free, open-source
+passlib[bcrypt]==1.7.4          # bcrypt password hashing
+bcrypt==4.2.1                   # passlib 1.7.4 is incompatible with bcrypt>=5 (__about__ removed)
+python-jose[cryptography]==3.3.0 # JWT token handling
+
+# OCR (optional — core works without these; install for image/PDF support)
+# pytesseract==0.3.10           # Tesseract wrapper
+# Pillow==10.3.0                # Image processing
+# pymupdf==1.24.3               # PDF rendering (PyMuPDF)
+
+# PDF report generation — Phase 5 Module 3
+reportlab==4.2.2
+
+# Testing
+pytest==8.2.0
+httpx==0.27.0                   # Required by FastAPI TestClient

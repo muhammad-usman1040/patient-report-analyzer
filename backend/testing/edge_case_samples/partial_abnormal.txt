@@ -1,0 +1,6 @@
+PARTIAL LAB REPORT
+Patient: Test Patient
+
+TEST                    RESULT      UNIT
+-----------------------------------------
+Hemoglobin              8.5         g/dL
