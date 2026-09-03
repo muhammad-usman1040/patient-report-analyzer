@@ -69,3 +69,27 @@ def test_disclaimer_always_present():
         result = evaluate_possible_conditions(data)
         assert "disclaimer" in result
         assert len(result["disclaimer"]) > 10
+
+
+def test_confidence_uses_full_indicator_set_and_caps_at_ninety_percent():
+    result = evaluate_possible_conditions({
+        "Hemoglobin": ANEMIA_FLAGS["Hemoglobin"],
+        "MCV": ANEMIA_FLAGS["MCV"],
+    })
+    condition = next(item for item in result["conditions"] if item["name"] == "Iron_Deficiency_Anemia")
+    assert condition["confidence"] == 0.7
+
+
+def test_confidence_is_capped_at_ninety_percent():
+    result = evaluate_possible_conditions(ANEMIA_FLAGS)
+    condition = next(item for item in result["conditions"] if item["name"] == "Iron_Deficiency_Anemia")
+    assert condition["confidence"] == 0.9
+
+
+def test_condition_below_configured_threshold_is_still_visible():
+    result = evaluate_possible_conditions({
+        "Hemoglobin": ANEMIA_FLAGS["Hemoglobin"],
+        "MCV": ANEMIA_FLAGS["MCV"],
+    })
+    condition = next(item for item in result["conditions"] if item["name"] == "Iron_Deficiency_Anemia")
+    assert condition["confidence"] == 0.7

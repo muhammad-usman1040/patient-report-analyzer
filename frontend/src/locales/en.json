@@ -14,6 +14,7 @@
     "outputFormatLabel": "Output Format",
     "outputFormatScreen": "View on screen",
     "outputFormatPDF": "Download as PDF",
+    "abnormalOnly": "Show abnormal results only",
     "analyzeButton": "Analyze Report",
     "analyzing": "Analyzing...",
     "loginPrompt": "Log in to save your history",
@@ -24,6 +25,7 @@
   "results": {
     "title": "Analysis Results",
     "flaggedParams": "Flagged Parameters",
+    "analyzedParams": "Analyzed Parameters",
     "possibleConditions": "Possible Conditions",
     "allNormal": "All values are within normal range.",
     "insufficientEvidence": "Insufficient evidence to identify a specific condition from the available report.",

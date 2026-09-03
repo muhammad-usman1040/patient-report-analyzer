@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function ResultsPage({ data, lang, onBack }) {
   const t = lang;
-  const { result_state, flagged_parameters = [], conditions = [], disclaimer } = data;
+  const { result_state, parameters = data.flagged_parameters || [], conditions = [], disclaimer, unsupported_message, multiple_reports_message } = data;
   const [pdfLoading, setPdfLoading] = useState(false);
   const [pdfError, setPdfError] = useState("");
 
@@ -33,7 +33,7 @@ export default function ResultsPage({ data, lang, onBack }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           result_state,
-          flagged_parameters,
+          flagged_parameters: parameters,
           conditions,
           disclaimer,
           language: t._code ?? "en",
@@ -61,19 +61,22 @@ export default function ResultsPage({ data, lang, onBack }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
+    <div className="app-shell min-h-screen py-8 px-4 sm:py-12">
       <div className="max-w-2xl mx-auto space-y-6">
-        <h1 className="text-2xl font-bold text-blue-700">{t.results.title}</h1>
+        <div className="results-heading">
+          <div className="section-kicker">REPORT REVIEW</div>
+          <h1 className="text-2xl font-bold">{t.results.title}</h1>
+        </div>
 
-        {/* Flagged parameters */}
-        {flagged_parameters.length > 0 && (
+        {/* Analyzed parameters */}
+        {parameters.length > 0 && (
           <section>
-            <h2 className="font-semibold text-gray-700 mb-2">{t.results.flaggedParams}</h2>
+            <h2 className="font-semibold results-section-title mb-2">{t.results.analyzedParams}</h2>
             <div className="space-y-2">
-              {flagged_parameters.map((p) => (
+              {parameters.map((p) => (
                 <div
                   key={p.name}
-                  className={`flex items-center justify-between border rounded-lg px-4 py-2 ${statusColor(p.status)}`}
+                  className={`result-row flex items-center justify-between border rounded-lg px-4 py-3 ${statusColor(p.status)}`}
                 >
                   <span className="font-medium">{p.name}</span>
                   <span className="text-sm">
@@ -94,8 +97,26 @@ export default function ResultsPage({ data, lang, onBack }) {
           </section>
         )}
 
+        {unsupported_message && (
+          <section className="info-alert bg-gray-100 border rounded-lg p-4 text-sm">
+            {unsupported_message}
+          </section>
+        )}
+
+        {multiple_reports_message && (
+          <section className="warning-alert bg-yellow-50 border rounded-lg p-4 text-sm">
+            {multiple_reports_message}
+          </section>
+        )}
+
+        {parameters.some((parameter) => parameter.unit_unverified) && (
+          <section className="warning-alert bg-yellow-50 border rounded-lg p-4 text-sm">
+            Some units could not be verified automatically. Please double-check those results.
+          </section>
+        )}
+
         {/* Result state */}
-        <section className="bg-white rounded-xl shadow p-5">
+        <section className="result-card rounded-xl p-5 sm:p-6">
           {result_state === "all_normal" && (
             <p className="text-green-600 font-medium">{t.results.allNormal}</p>
           )}
@@ -104,15 +125,15 @@ export default function ResultsPage({ data, lang, onBack }) {
           )}
           {result_state === "possible_conditions" && conditions.length > 0 && (
             <div>
-              <h2 className="font-semibold text-gray-700 mb-3">{t.results.possibleConditions}</h2>
+              <h2 className="font-semibold results-section-title mb-3">{t.results.possibleConditions}</h2>
               <div className="space-y-3">
                 {conditions.map((c) => (
-                  <div key={c.name} className="border rounded-lg p-4 bg-orange-50 border-orange-200">
+                  <div key={c.name} className="condition-card border rounded-lg p-4">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-orange-800">
+                      <span className="font-semibold condition-name">
                         {c.name.replace(/_/g, " ")}
                       </span>
-                      <span className="text-sm text-orange-600">
+                      <span className="text-sm condition-confidence">
                         {t.results.confidence}: {Math.round(c.confidence * 100)}%
                       </span>
                     </div>
@@ -129,7 +150,7 @@ export default function ResultsPage({ data, lang, onBack }) {
         </section>
 
         {/* Disclaimer */}
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm text-yellow-800">
+        <div className="warning-alert border rounded-lg p-4 text-sm">
           ⚕️ {disclaimer || t.results.disclaimer}
         </div>
 
@@ -142,14 +163,14 @@ export default function ResultsPage({ data, lang, onBack }) {
         <div className="flex gap-3">
           <button
             onClick={onBack}
-            className="flex-1 border border-blue-500 text-blue-600 py-2 rounded-lg hover:bg-blue-50"
+            className="secondary-button flex-1 border py-2.5 rounded-lg"
           >
             {t.results.backToUpload}
           </button>
           <button
             onClick={handleDownloadPDF}
             disabled={pdfLoading}
-            className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="primary-button flex-1 text-white py-2.5 rounded-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {pdfLoading ? t.results.generatingPDF : t.results.downloadPDF}
           </button>

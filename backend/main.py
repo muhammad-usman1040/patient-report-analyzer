@@ -11,6 +11,7 @@ Endpoints:
   GET  /api/auth/me
 """
 import os
+import re
 import sys
 import tempfile
 from io import BytesIO
@@ -33,7 +34,7 @@ sys.path.insert(0, str(BASE / "database"))
 sys.path.insert(0, str(BASE / "reports"))
 
 from ocr_engine import extract_text_from_report
-from value_parser import parse_report_text
+from value_parser import parse_report_text_detailed
 from range_comparator import compare_to_normal_ranges
 from confidence_engine import evaluate_possible_conditions
 from auth.auth_routes import router as auth_router, get_optional_current_user, get_required_current_user
@@ -81,6 +82,7 @@ async def analyze_report(
     gender: Optional[str] = Form(None),
     age: Optional[int] = Form(None),
     output_format: Optional[str] = Form("screen"),
+    abnormal_only: bool = Form(False),
     current_user: Optional[Dict[str, Any]] = Depends(get_optional_current_user),
 ):
     allowed_suffixes = {".pdf", ".jpg", ".jpeg", ".png", ".txt"}
@@ -108,7 +110,13 @@ async def analyze_report(
             raise HTTPException(status_code=422, detail=f"OCR failed: {str(e)}")
 
         try:
-            parsed = parse_report_text(raw_text)
+            patient_markers = list(re.finditer(r"(?im)^patient\s*[:：]", raw_text))
+            multiple_reports_detected = len(patient_markers) > 1
+            if multiple_reports_detected:
+                raw_text = raw_text[:patient_markers[1].start()]
+            parsed_details = parse_report_text_detailed(raw_text)
+            parsed_details["multiple_reports_detected"] = multiple_reports_detected
+            parsed = parsed_details["results"]
             flagged = compare_to_normal_ranges(parsed, user_gender=gender, user_age=age)
             analysis = evaluate_possible_conditions(flagged)
         except HTTPException:
@@ -116,7 +124,7 @@ async def analyze_report(
         except Exception as e:
             raise HTTPException(status_code=422, detail=f"Analysis failed: {str(e)}")
 
-        flagged_list = [
+        all_parameters = [
             {
                 "name": param,
                 "value": info["value"],
@@ -127,16 +135,29 @@ async def analyze_report(
                 "normal_max": info["normal_max"],
             }
             for param, info in flagged.items()
-            if info["status"] != "normal"
         ]
+        parameter_list = [item for item in all_parameters if item["status"] != "normal"]
+        display_parameters = parameter_list if abnormal_only else all_parameters
 
         response: Dict[str, Any] = {
             "result_state": analysis["result_state"],
-            "flagged_parameters": flagged_list,
+            "flagged_parameters": parameter_list,
+            "parameters": display_parameters,
             "conditions": analysis["conditions"],
             "disclaimer": analysis["disclaimer"],
             "output_format": output_format,
         }
+        if parsed_details["unsupported_parameters"]:
+            response["unsupported_parameters"] = parsed_details["unsupported_parameters"]
+            response["unsupported_message"] = (
+                "The following tests are not currently supported by this system: "
+                + ", ".join(parsed_details["unsupported_parameters"])
+                + "."
+            )
+        if parsed_details["multiple_reports_detected"]:
+            response["multiple_reports_message"] = (
+                "Multiple reports detected in this file; only the first was analyzed."
+            )
 
         # Persist only when authenticated — never save raw file or OCR text
         if current_user:
@@ -180,7 +201,7 @@ def history(current_user: Dict[str, Any] = Depends(get_required_current_user)):
 
 class _FlaggedParameter(BaseModel):
     name: str
-    value: float
+    value: Any
     unit: str
     status: str
     normal_min: Optional[float] = None

@@ -4,6 +4,7 @@ from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+import re
 
 doc = SimpleDocTemplate(
     "test_lab_report.pdf",
@@ -63,7 +64,34 @@ story.append(pt)
 story.append(Spacer(1, 6*mm))
 
 
-def make_table(data, flag_rows_high, flag_rows_low):
+def calculate_status(value, reference):
+    value_text = str(value).strip().lower()
+    reference_text = str(reference).strip().lower()
+    if not re.search(r"\d", value_text):
+        return "Normal" if value_text == reference_text or value_text in {"negative", "nil", "none", "absent", "clear", "few", "pale yellow"} else "HIGH"
+    numeric_value = float(value_text.replace(",", ""))
+    range_match = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*(?:-|–|—|to)\s*([0-9]+(?:\.[0-9]+)?)", reference)
+    if range_match:
+        low, high = map(float, range_match.groups())
+        if numeric_value < low:
+            return "LOW"
+        if numeric_value > high:
+            return "HIGH"
+        return "Normal"
+    upper_match = re.search(r"(?:<|≤)\s*([0-9]+(?:\.[0-9]+)?)", reference)
+    lower_match = re.search(r"(?:>|≥)\s*([0-9]+(?:\.[0-9]+)?)", reference)
+    if upper_match:
+        return "HIGH" if numeric_value > float(upper_match.group(1)) else "Normal"
+    if lower_match:
+        return "LOW" if numeric_value < float(lower_match.group(1)) else "Normal"
+    return "—"
+
+
+def make_table(data, flag_rows_high=None, flag_rows_low=None):
+    for row in data[1:]:
+        row[4] = calculate_status(row[1], row[3])
+    flag_rows_high = [index for index, row in enumerate(data[1:], start=1) if row[4] == "HIGH"]
+    flag_rows_low = [index for index, row in enumerate(data[1:], start=1) if row[4] == "LOW"]
     col_widths = [60*mm, 25*mm, 22*mm, 45*mm, 18*mm]
     tbl = Table(data, colWidths=col_widths)
     style_cmds = [
@@ -131,6 +159,28 @@ glucose = [
 ]
 story.append(make_table(glucose, flag_rows_high=[1, 2], flag_rows_low=[]))
 story.append(Spacer(1, 8*mm))
+
+# ---- Urinalysis ----
+story.append(Paragraph("URINALYSIS (URINE R/E)", section_style))
+urinalysis = [
+    ["TEST", "RESULT", "UNIT", "REFERENCE RANGE", "FLAG"],
+    ["Color", "Pale Yellow", "", "Pale Yellow", "Normal"],
+    ["Appearance", "Clear", "", "Clear", "Normal"],
+    ["Specific Gravity", "1.015", "", "1.005 - 1.030", "Normal"],
+    ["Protein", "Negative", "", "Negative", "Normal"],
+    ["Glucose", "Negative", "", "Negative", "Normal"],
+    ["Ketones", "Negative", "", "Negative", "Normal"],
+    ["Blood", "Negative", "", "Negative", "Normal"],
+    ["Leukocyte Esterase", "Negative", "", "Negative", "Normal"],
+    ["Nitrites", "Negative", "", "Negative", "Normal"],
+    ["Epithelial Cells", "Few", "", "Few", "Normal"],
+    ["Pus Cells", "2", "/hpf", "0 - 5", "Normal"],
+    ["RBC", "1", "/hpf", "0 - 2", "Normal"],
+    ["Casts", "None", "", "None", "Normal"],
+    ["Crystals", "None", "", "None", "Normal"],
+]
+story.append(make_table(urinalysis))
+story.append(Spacer(1, 6*mm))
 
 # ---- Footer ----
 story.append(Paragraph("-" * 95, sep_style))

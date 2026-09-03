@@ -1,6 +1,6 @@
 """Tests for value_parser.py."""
 import pytest
-from value_parser import parse_report_text
+from value_parser import parse_report_text, parse_report_text_detailed
 
 
 SAMPLE = """
@@ -51,3 +51,79 @@ def test_empty_text_returns_empty():
 
 def test_gibberish_returns_empty():
     assert parse_report_text("foo bar baz qux") == {}
+
+
+def test_parses_qualitative_urinalysis_values():
+    result = parse_report_text("Urine Color: Pale Yellow\nUrine Protein: Trace\nUrine Glucose: Positive")
+    assert result["Urine_Color"]["value"] == "Pale Yellow"
+    assert result["Protein"]["value"] == "Trace"
+    assert result["Glucose_Urine"]["value"] == "Positive"
+
+
+def test_collects_unsupported_parameter():
+    result = parse_report_text_detailed("Troponin: 0.04 ng/mL")
+    assert result["results"] == {}
+    assert result["unsupported_parameters"] == ["Troponin"]
+
+
+def test_blood_urea_aliases_share_bun_canonical_name():
+    result = parse_report_text("Blood Urea: 12 mg/dL\nBUN: 14 mg/dL")
+    assert list(result) == ["BUN"]
+    assert result["BUN"]["value"] == 14.0
+
+
+def test_parses_unicode_units_and_three_parameter_rows():
+    result = parse_report_text("RBC: 5.0 10⁶/µL\nPlatelets: 265 10³/µL\nWBC: 7.2 10³/µL")
+    assert result["RBC"]["unit"] == "10⁶/µL"
+    assert result["Platelets"]["unit"] == "10³/µL"
+    assert result["WBC"]["unit"] == "10³/µL"
+
+
+def test_parses_wbc_in_three_parameter_per_line_format():
+    result = parse_report_text("WBC 13.8 10³/µL 4.0 - 11.0")
+    assert result["WBC"]["value"] == 13.8
+
+
+def test_parses_wbc_count_label():
+    result = parse_report_text("WBC Count   7.4   10³/µL   4.0–11.0")
+    assert result["WBC"]["value"] == 7.4
+    assert result["WBC"]["unit"] == "10³/µL"
+
+
+def test_parses_multiline_cbc_units_with_numeric_power_notation():
+    result = parse_report_text(
+        "RBC Count\n5.0\n10^6/uL\nWBC\n7.0\n10^3/uL\nPlatelets\n220\n10^3/uL\nHemoglobin\n13.5\ng/dL"
+    )
+    assert result["RBC"]["unit"] == "10^6/uL"
+    assert result["WBC"]["unit"] == "10^3/uL"
+    assert result["Platelets"]["unit"] == "10^3/uL"
+
+
+def test_detects_multiple_patient_reports():
+    result = parse_report_text_detailed("Patient: One\nHemoglobin: 14 g/dL\nPatient: Two\nHemoglobin: 13 g/dL")
+    assert result["multiple_reports_detected"] is True
+
+
+def test_parses_standard_urine_re_parameters():
+    result = parse_report_text(
+        """URINE R/E
+    Color: Pale Yellow
+Appearance: Clear
+Specific Gravity: 1.015
+Protein: Negative
+Glucose: Negative
+Ketones: Negative
+Blood: Negative
+Leukocyte Esterase: Negative
+Nitrites: Negative
+Epithelial Cells: Few
+Pus cells: 2 /hpf
+RBC: 1 /hpf
+Casts: None
+Crystals: None"""
+    )
+    assert set(result) >= {
+        "Urine_Color", "Urine_Appearance", "Specific_Gravity", "Protein",
+        "Glucose_Urine", "Ketones", "Urine_Blood", "Leukocyte_Esterase",
+        "Nitrites", "Epithelial_Cells", "WBC_Urine", "RBC_Urine", "Casts", "Crystals",
+    }

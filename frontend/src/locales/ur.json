@@ -14,6 +14,7 @@
     "outputFormatLabel": "آؤٹ پٹ فارمیٹ",
     "outputFormatScreen": "اسکرین پر دیکھیں",
     "outputFormatPDF": "PDF ڈاؤن لوڈ کریں",
+    "abnormalOnly": "صرف غیر معمولی نتائج دکھائیں",
     "analyzeButton": "رپورٹ کا تجزیہ کریں",
     "analyzing": "تجزیہ ہو رہا ہے...",
     "loginPrompt": "تاریخ محفوظ کرنے کے لیے لاگ ان کریں",
@@ -24,6 +25,7 @@
   "results": {
     "title": "تجزیے کے نتائج",
     "flaggedParams": "نشاندہی شدہ پیرامیٹرز",
+    "analyzedParams": "تجزیہ شدہ پیرامیٹرز",
     "possibleConditions": "ممکنہ حالات",
     "allNormal": "تمام اقدار معمول کی حد میں ہیں۔",
     "insufficientEvidence": "دستیاب رپورٹ سے کوئی مخصوص حالت شناخت کرنے کے لیے ناکافی ثبوت۔",

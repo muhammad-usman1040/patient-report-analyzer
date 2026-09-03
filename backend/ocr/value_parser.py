@@ -4,8 +4,19 @@ Parse raw OCR text into a structured dict keyed by parameter name.
 Recognises the 10 lab test categories defined in normal_ranges.json.
 Returns: {parameter_name: {"value": float, "unit": str, "category": str}}
 """
+import json
 import re
+from pathlib import Path
 from typing import Dict, Any, Optional
+
+_SUPPORTED_PATH = Path(__file__).parent.parent / "data" / "supported_parameters.json"
+with open(_SUPPORTED_PATH, encoding="utf-8") as _file:
+    _SUPPORTED = json.load(_file)
+    _SUPPORTED_PARAMETERS = {
+        parameter
+        for panel in _SUPPORTED.values()
+        for parameter in panel["parameters"]
+    }
 
 # Aliases: maps common OCR label variants → canonical parameter name.
 # Keys must be lowercase. Exact match is always tried first.
@@ -21,6 +32,7 @@ ALIASES: Dict[str, str] = {
     "rbc": "RBC",
     "red blood cell": "RBC", "red blood cells": "RBC",
     "red blood cell count": "RBC", "rbc count": "RBC",
+    "wbc count": "WBC", "white blood cell count": "WBC",
     "plt": "Platelets", "platelets": "Platelets", "platelet count": "Platelets",
     "hct": "Hematocrit", "hematocrit": "Hematocrit", "haematocrit": "Hematocrit",
     "mcv": "MCV", "mean corpuscular volume": "MCV",
@@ -103,6 +115,15 @@ ALIASES: Dict[str, str] = {
     "rbc urine": "RBC_Urine", "rbc/hpf": "RBC_Urine", "rbc urine/hpf": "RBC_Urine",
     "wbc urine": "WBC_Urine", "wbc/hpf": "WBC_Urine",
     "wbc urine/hpf": "WBC_Urine", "pus cells": "WBC_Urine",
+    "urine color": "Urine_Color", "color": "Urine_Color",
+    "appearance": "Urine_Appearance", "urine appearance": "Urine_Appearance",
+    "ketones": "Ketones", "urine ketones": "Ketones",
+    "blood": "Urine_Blood", "urine blood": "Urine_Blood",
+    "leukocyte esterase": "Leukocyte_Esterase", "leukocytes esterase": "Leukocyte_Esterase",
+    "nitrites": "Nitrites", "urine nitrites": "Nitrites",
+    "epithelial cells": "Epithelial_Cells", "epithelial cell": "Epithelial_Cells",
+    "casts": "Casts", "urine casts": "Casts",
+    "crystals": "Crystals", "urine crystals": "Crystals",
     # Vitamins
     "vitamin d": "Vitamin_D", "vit d": "Vitamin_D",
     "25-oh vitamin d": "Vitamin_D", "25-hydroxyvitamin d": "Vitamin_D",
@@ -131,6 +152,9 @@ ALIASES: Dict[str, str] = {
     "esr": "ESR", "erythrocyte sedimentation rate": "ESR",
 }
 
+ALIASES.update({alias.lower(): canonical for panel in _SUPPORTED.values()
+                for alias, canonical in panel.get("aliases", {}).items()})
+
 # Short aliases that must ONLY match when the entire cleaned label equals the alias.
 # These are dangerous in substring/word-boundary matching because they appear
 # inside unrelated words or unit strings (e.g. "ast" in "fasting", "mg" in "mg/dL").
@@ -158,7 +182,7 @@ _UNIT_TOKENS = frozenset({
 _SKIP_LABELS = frozenset({
     "low", "high", "normal", "flag", "result", "unit", "range", "test",
     "reference", "value", "parameter", "name", "status", "level",
-    "positive", "negative", "trace", "absent", "present",
+    "positive", "negative", "trace", "absent", "present", "patient", "date",
     "within normal limits", "wnl",
 })
 
@@ -178,6 +202,10 @@ PARAM_CATEGORY: Dict[str, str] = {
     "Free_T3": "Thyroid", "Free_T4": "Thyroid",
     "pH": "Urinalysis", "Specific_Gravity": "Urinalysis", "Protein": "Urinalysis",
     "Glucose_Urine": "Urinalysis", "RBC_Urine": "Urinalysis", "WBC_Urine": "Urinalysis",
+    "Urine_Color": "Urinalysis", "Urine_Appearance": "Urinalysis",
+    "Ketones": "Urinalysis", "Urine_Blood": "Urinalysis",
+    "Leukocyte_Esterase": "Urinalysis", "Nitrites": "Urinalysis",
+    "Epithelial_Cells": "Urinalysis", "Casts": "Urinalysis", "Crystals": "Urinalysis",
     "Vitamin_D": "Vitamins", "Vitamin_B12": "Vitamins", "Folate": "Vitamins",
     "Sodium": "Electrolytes", "Potassium": "Electrolytes", "Chloride": "Electrolytes",
     "Bicarbonate": "Electrolytes", "Calcium": "Electrolytes",
@@ -188,17 +216,26 @@ PARAM_CATEGORY: Dict[str, str] = {
 # Strips parenthetical groups from a line segment before the first standalone number.
 _PAREN_BEFORE_NUM = re.compile(r"\s*\([^)]*\)(?=\s*[\d]|\s*[:\-]\s*\d)")
 
-# Matches: "Hemoglobin   13.5   g/dL"  or  "TSH: 2.10 mIU/L"  or  "HbA1c   8.2  %"
+# Matches: "Hemoglobin   13.5   g/dL", "TSH: 2.10 mIU/L", "HbA1c   8.2  %" and
+# OCR single-space output like "Hemoglobin 7.8 g/dL". Alias resolution gates
+# false positives, so a single-space separator is safe here.
 _LINE_PATTERN = re.compile(
     r"^([A-Za-z][A-Za-z0-9 /\.\-]*?)"       # label (non-greedy, starts with letter)
-    r"(?:\s{2,}|[ \t]*[:\-][ \t]*)"          # separator: 2+ spaces OR colon/dash
-    r"(\d+(?:\.\d+)?)"                        # numeric value
-    r"\s*([A-Za-z/%^0-9\.]*)",               # optional unit
+    r"(?:\s+|[ \t]*[:\-][ \t]*)"             # separator: whitespace OR colon/dash
+    r"([<>]?\d{1,3}(?:,\d{3})+(?:\.\d+)?|[<>]?\d+(?:\.\d+)?)"  # value (commas, <, >)
+    r"\s*([A-Za-z/%^0-9\.⁰¹²³⁴⁵⁶⁷⁸⁹µμ×■\s]*)", # optional unit
+    re.IGNORECASE,
+)
+
+_QUALITATIVE_LINE_PATTERN = re.compile(
+    r"^([A-Za-z][A-Za-z0-9 /\.\-]*?)\s*(?:[:\-]|\s{2,})\s*([A-Za-z][A-Za-z ]*)$",
     re.IGNORECASE,
 )
 
 _IS_NUMBER = re.compile(r"^\d+(?:\.\d+)?$")
-_IS_UNIT = re.compile(r"^[A-Za-z/%^][A-Za-z0-9/%^\.\-]*$")
+_IS_UNIT = re.compile(
+    r"^(?:[A-Za-z/%^][A-Za-z0-9/%^\.\-]*|10\^?[0-9]+(?:\/[A-Za-zµμ/]+)?|10\^[0-9]+[A-Za-zµμ/]*|x10\^?[0-9]+(?:/[A-Za-zµμ]+)?)$"
+)
 _NOT_UNIT = {"low", "high", "normal", "flag", "result", "unit", "range", "test"}
 
 # Pre-build a sorted list of multi-word aliases (longest first) for word-boundary matching.
@@ -253,6 +290,10 @@ def _resolve_alias(raw_label: str) -> Optional[str]:
 
 
 def parse_report_text(raw_text: str) -> Dict[str, Any]:
+    return parse_report_text_detailed(raw_text)["results"]
+
+
+def parse_report_text_detailed(raw_text: str) -> Dict[str, Any]:
     """
     Parse raw OCR/PDF text into a structured dict.
 
@@ -270,7 +311,27 @@ def parse_report_text(raw_text: str) -> Dict[str, Any]:
         }
     """
     results: Dict[str, Any] = {}
+    unsupported = set()
     lines = [ln.strip() for ln in raw_text.splitlines()]
+    multiple_reports_detected = sum(
+        bool(re.match(r"^patient\s*[:：]", line, re.IGNORECASE)) for line in lines
+    ) > 1
+    urinalysis_context = any(
+        "urine" in line.lower() or "urinalysis" in line.lower() or "urine r/e" in line.lower()
+        for line in lines
+    )
+
+    def resolve_report_label(label: str, unit: str = "", qualitative: bool = False) -> Optional[str]:
+        canonical = _resolve_alias(label)
+        if urinalysis_context and (qualitative or unit.strip().lower() in {"", "/hpf"}):
+            urine_aliases = {
+                "glucose": "Glucose_Urine",
+                "rbc": "RBC_Urine",
+                "wbc": "WBC_Urine",
+                "pus cells": "WBC_Urine",
+            }
+            canonical = urine_aliases.get(label.strip().lower(), canonical)
+        return canonical
 
     # --- Pass 1: single-line format ---
     for line in lines:
@@ -279,26 +340,43 @@ def parse_report_text(raw_text: str) -> Dict[str, Any]:
         cleaned_line = _PAREN_BEFORE_NUM.sub("  ", line)
         match = _LINE_PATTERN.search(cleaned_line)
         if not match:
+            qualitative_match = _QUALITATIVE_LINE_PATTERN.match(cleaned_line)
+            if qualitative_match:
+                qualitative_label = qualitative_match.group(1).strip()
+                qualitative_value = qualitative_match.group(2).strip()
+                canonical = resolve_report_label(qualitative_label, qualitative=True)
+                if canonical and canonical in _SUPPORTED_PARAMETERS:
+                    results[canonical] = {
+                        "value": qualitative_value,
+                        "unit": "",
+                        "category": PARAM_CATEGORY[canonical],
+                    }
+                elif qualitative_label.lower() not in _SKIP_LABELS:
+                    unsupported.add(qualitative_label)
+                continue
             continue
         raw_label = match.group(1).strip()
         try:
-            value = float(match.group(2))
+            value = float(match.group(2).replace(",", "").strip("<>"))
         except ValueError:
             continue
         unit = match.group(3).strip() if match.group(3) else ""
+        unit = re.split(r"\s+(?=[<>]?\d)", unit, maxsplit=1)[0]
         # Reject if the "unit" field looks like a parameter name (mis-parse).
-        if unit.lower() in _SKIP_LABELS:
+        if unit.lower() in _SKIP_LABELS or re.fullmatch(r"\d+(?:\.\d+)?", unit):
             unit = ""
-        canonical = _resolve_alias(raw_label)
-        if canonical and canonical in PARAM_CATEGORY:
+        canonical = resolve_report_label(raw_label, unit)
+        if canonical and canonical in _SUPPORTED_PARAMETERS:
             results[canonical] = {
                 "value": value,
                 "unit": unit,
                 "category": PARAM_CATEGORY[canonical],
             }
+        elif raw_label.lower() not in _SKIP_LABELS:
+            unsupported.add(raw_label)
 
     # --- Pass 2: multi-line table format (label / value / unit on separate lines) ---
-    # Runs always; does not overwrite entries already found in Pass 1.
+    # Runs always; it fills missing units when Pass 1 only captured the value.
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -306,8 +384,13 @@ def parse_report_text(raw_text: str) -> Dict[str, Any]:
             i += 1
             continue
 
-        canonical = _resolve_alias(line)
-        if canonical and canonical in PARAM_CATEGORY and canonical not in results:
+        canonical = resolve_report_label(line, "unknown")
+        existing = results.get(canonical) if canonical else None
+        should_patch_missing_unit = canonical and canonical in _SUPPORTED_PARAMETERS and (
+            canonical not in results or not str(existing.get("unit", "")).strip()
+        )
+
+        if canonical and canonical in _SUPPORTED_PARAMETERS and should_patch_missing_unit:
             # Look ahead up to 3 lines for a bare number.
             value = None
             unit = ""
@@ -327,18 +410,39 @@ def parse_report_text(raw_text: str) -> Dict[str, Any]:
                     found_at = j
                     break
                 # Stop if we hit another known parameter label before a number.
-                elif _resolve_alias(candidate) and _resolve_alias(candidate) in PARAM_CATEGORY:
+                elif resolve_report_label(candidate) and resolve_report_label(candidate) in _SUPPORTED_PARAMETERS:
                     break
 
             if value is not None:
-                results[canonical] = {
+                debug_unit = unit or "<EMPTY>"
+                if canonical in {"RBC", "WBC", "Platelets"}:
+                    print(
+                        f"[PASS2_DEBUG] canonical={canonical} label={line!r} value={value} "
+                        f"assembled_unit={debug_unit!r} found_at={found_at} existing_unit={existing.get('unit') if existing else None!r}"
+                    )
+                assembled = {
                     "value": value,
                     "unit": unit,
                     "category": PARAM_CATEGORY[canonical],
                 }
+                if canonical in results:
+                    assembled["value"] = results[canonical].get("value", value)
+                    if not str(results[canonical].get("unit", "")).strip():
+                        results[canonical].update({"unit": unit, "category": PARAM_CATEGORY[canonical]})
+                        if canonical in {"RBC", "WBC", "Platelets"}:
+                            print(f"[PASS2_DEBUG] PATCHED_MISSING_UNIT canonical={canonical} unit={unit!r}")
+                        i = found_at + 1
+                        continue
+                results[canonical] = assembled
                 i = found_at + 1
                 continue
+            elif canonical in {"RBC", "WBC", "Platelets"}:
+                print(f"[PASS2_DEBUG] NO_ASSEMBLY canonical={canonical} label={line!r} candidates={lines[i:i+4]}")
 
         i += 1
 
-    return results
+    return {
+        "results": results,
+        "unsupported_parameters": sorted(unsupported),
+        "multiple_reports_detected": multiple_reports_detected,
+    }

@@ -81,3 +81,36 @@ def test_disclaimer_always_present():
     resp = _upload(SAMPLE_TEXT)
     assert "disclaimer" in resp.json()
     assert len(resp.json()["disclaimer"]) > 5
+
+
+def test_normal_parameters_are_returned():
+    body = _upload(b"Platelets: 220 x10^9/L\nTSH: 2.0 mIU/L").json()
+    parameters = {item["name"]: item for item in body["parameters"]}
+    assert parameters["Platelets"]["status"] == "normal"
+    assert parameters["TSH"]["status"] == "normal"
+
+
+def test_qualitative_and_unsupported_results_are_returned_separately():
+    body = _upload(b"Urine Protein: Trace\nTroponin: 0.04 ng/mL").json()
+    parameters = {item["name"]: item for item in body["parameters"]}
+    assert parameters["Protein"]["status"] == "low"
+    assert body["unsupported_parameters"] == ["Troponin"]
+    assert "not currently supported" in body["unsupported_message"]
+
+
+def test_statuses_are_present_for_all_numeric_parameters():
+    body = _upload(
+        b"WBC: 13.8 x10^9/L\nPotassium: 5.3 mEq/L\nSodium: 140 mEq/L\n"
+        b"Chloride: 90 mEq/L\nTSH: 2.0 mIU/L"
+    ).json()
+    statuses = {item["name"]: item["status"] for item in body["parameters"]}
+    assert statuses == {
+        "WBC": "high", "Potassium": "high", "Sodium": "normal",
+        "Chloride": "low", "TSH": "normal",
+    }
+
+
+def test_multiple_reports_warn_and_analyze_first_only():
+    body = _upload(b"Patient: One\nWBC: 13.8 x10^9/L\nPatient: Two\nWBC: 4.0 x10^9/L").json()
+    assert body["multiple_reports_message"] == "Multiple reports detected in this file; only the first was analyzed."
+    assert body["parameters"][0]["value"] == 13.8

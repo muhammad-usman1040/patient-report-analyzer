@@ -258,7 +258,7 @@ def generate_pdf_report(result: Dict[str, Any], language: str = "en") -> bytes:
     story.append(Spacer(1, 5 * mm))
 
     # --- Parameter results table ---
-    flagged: List[Dict] = result.get("flagged_parameters", [])
+    flagged: List[Dict] = result.get("parameters", result.get("flagged_parameters", []))
     story.append(Paragraph(_s(lang, "flagged_heading"), heading2))
 
     if flagged:

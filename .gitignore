@@ -12,6 +12,7 @@ build/
 venv/
 env/
 .venv/
+.venv*/
 *.egg
 
 # Environment
@@ -37,3 +38,6 @@ Thumbs.db
 # Temp
 *.tmp
 *.log
+
+# Local debugging
+tmp_debug*.py

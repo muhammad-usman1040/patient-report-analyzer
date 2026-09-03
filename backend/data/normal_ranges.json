@@ -159,8 +159,10 @@
       "general": {"min": 0.4, "max": 4.0}
     },
     "T3": {
-      "unit": "ng/dL",
-      "general": {"min": 80, "max": 200}
+      "ranges": {
+        "ng/mL": {"min": 0.8, "max": 2.0},
+        "ng/dL": {"min": 80, "max": 200}
+      }
     },
     "T4": {
       "unit": "ug/dL",
@@ -176,6 +178,14 @@
     }
   },
   "Urinalysis": {
+    "Urine_Color": {
+      "unit": "",
+      "qualitative": {"normal": ["pale yellow", "yellow", "straw", "clear"]}
+    },
+    "Urine_Appearance": {
+      "unit": "",
+      "qualitative": {"normal": ["clear", "slightly hazy"]}
+    },
     "pH": {
       "unit": "",
       "general": {"min": 4.5, "max": 8.0}
@@ -186,11 +196,33 @@
     },
     "Protein": {
       "unit": "mg/dL",
-      "general": {"min": 0, "max": 14}
+      "general": {"min": 0, "max": 14},
+      "qualitative": {"normal": ["negative", "nil", "absent"], "low": ["trace"], "high": ["positive", "+", "++", "+++"]}
     },
     "Glucose_Urine": {
       "unit": "mg/dL",
-      "general": {"min": 0, "max": 15}
+      "general": {"min": 0, "max": 15},
+      "qualitative": {"normal": ["negative", "nil", "absent"], "high": ["positive", "+", "++", "+++"]}
+    },
+    "Ketones": {
+      "unit": "",
+      "qualitative": {"normal": ["negative", "nil", "absent"], "high": ["trace", "positive", "+", "++", "+++"]}
+    },
+    "Urine_Blood": {
+      "unit": "",
+      "qualitative": {"normal": ["negative", "nil", "absent"], "high": ["trace", "positive", "+", "++", "+++"]}
+    },
+    "Leukocyte_Esterase": {
+      "unit": "",
+      "qualitative": {"normal": ["negative", "nil", "absent"], "high": ["trace", "positive", "+", "++", "+++"]}
+    },
+    "Nitrites": {
+      "unit": "",
+      "qualitative": {"normal": ["negative", "nil", "absent"], "high": ["positive", "+", "++", "+++"]}
+    },
+    "Epithelial_Cells": {
+      "unit": "",
+      "qualitative": {"normal": ["few", "occasional", "0-5"]}
     },
     "RBC_Urine": {
       "unit": "/hpf",
@@ -199,6 +231,14 @@
     "WBC_Urine": {
       "unit": "/hpf",
       "general": {"min": 0, "max": 5}
+    },
+    "Casts": {
+      "unit": "",
+      "qualitative": {"normal": ["none", "absent", "nil"]}
+    },
+    "Crystals": {
+      "unit": "",
+      "qualitative": {"normal": ["none", "absent", "nil"]}
     }
   },
   "Vitamins": {

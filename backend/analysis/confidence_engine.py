@@ -69,7 +69,7 @@ def evaluate_possible_conditions(flagged_data: Dict[str, Any]) -> Dict[str, Any]
 
     for condition_name, config in indicators.items():
         threshold = config["threshold"]
-        possible_score = 0.0
+        total_possible_score = sum(ind["weight"] for ind in config["indicators"])
         actual_score = 0.0
         supporting: list = []
 
@@ -82,20 +82,19 @@ def evaluate_possible_conditions(flagged_data: Dict[str, Any]) -> Dict[str, Any]
             if param_data is None:
                 continue
 
-            possible_score += weight
             status = param_data.get("status")
 
             if status == direction:
                 actual_score += weight
                 supporting.append(f"{param} ({status})")
 
-        if possible_score == 0:
+        if total_possible_score == 0:
             continue
 
-        # Confidence = score of matched indicators / score of all indicators present in report.
-        confidence = actual_score / possible_score
+        # Score against every configured indicator, not only indicators present in the report.
+        confidence = min(actual_score / total_possible_score, 0.9)
 
-        if confidence >= threshold:
+        if actual_score > 0:
             # Apply exclusions: skip condition if any parameter value crosses a boundary
             # that belongs to a different (more/less severe) condition.
             # E.g. Pre_Diabetes is excluded when Fasting_Glucose >= 126 (that's Diabetes).

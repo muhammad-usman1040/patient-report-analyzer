@@ -13,10 +13,10 @@ passlib[bcrypt]==1.7.4          # bcrypt password hashing
 bcrypt==4.2.1                   # passlib 1.7.4 is incompatible with bcrypt>=5 (__about__ removed)
 python-jose[cryptography]==3.3.0 # JWT token handling
 
-# OCR (optional — core works without these; install for image/PDF support)
-# pytesseract==0.3.10           # Tesseract wrapper
-# Pillow==10.3.0                # Image processing
-# pymupdf==1.24.3               # PDF rendering (PyMuPDF)
+# OCR support
+pytesseract==0.3.10             # Tesseract wrapper
+Pillow==10.3.0                  # Image processing
+pymupdf==1.24.3                 # PDF rendering (PyMuPDF)
 
 # PDF report generation — Phase 5 Module 3
 reportlab==4.2.2
