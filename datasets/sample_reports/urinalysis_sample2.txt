@@ -1,0 +1,15 @@
+URINALYSIS
+Patient: Nadia Perveen (Female, 27 yrs)
+Date: 2026-08-31
+Lab: Shifa International Hospital
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+pH                      6.0                     4.5 - 8.0
+Specific Gravity        1.015                   1.005 - 1.030
+Protein                 5           mg/dL       0 - 14
+Glucose Urine           0           mg/dL       0 - 15
+RBC Urine               0           /hpf        0 - 2
+WBC Urine               2           /hpf        0 - 5
+
+IMPRESSION: Urinalysis within normal limits.

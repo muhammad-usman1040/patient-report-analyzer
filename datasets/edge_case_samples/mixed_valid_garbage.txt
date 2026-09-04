@@ -1,0 +1,8 @@
+!!@#$%^&*() INVALID LINE
+xyzzy foobar 999 zzz
+**** CORRUPT DATA ****
+Hemoglobin              8.5         g/dL
+--- more garbage ---
+QQ WW EE RR TT YY 00
+MCV                     72          fL
+%%% END %%%

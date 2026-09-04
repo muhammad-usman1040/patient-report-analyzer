@@ -1,0 +1,12 @@
+MICRONUTRIENT SCREENING
+Patient: Bilal Chaudhry (Male, 29 yrs)
+Date: 2026-08-31
+Lab: Liaquat National Hospital
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+Vit D                   45          ng/mL       30 - 100
+Vit B12                 420         pg/mL       200 - 900
+Folic Acid              8.5         ng/mL       2.7 - 17.0
+
+IMPRESSION: All micronutrient levels within normal range.

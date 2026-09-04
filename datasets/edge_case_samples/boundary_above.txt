@@ -1,0 +1,6 @@
+GLUCOSE PANEL
+Patient: Test Patient
+
+TEST                    RESULT      UNIT        REFERENCE
+-----------------------------------------------------------
+Fasting Glucose         148         mg/dL       70 - 100

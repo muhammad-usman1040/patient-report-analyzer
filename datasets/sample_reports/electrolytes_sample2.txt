@@ -1,0 +1,16 @@
+ELECTROLYTES PANEL
+Patient: Sumera Hanif (Female, 45 yrs)
+Date: 2026-08-31
+Lab: Combined Military Hospital (CMH)
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+Sodium                  140         mEq/L       136 - 145
+Potassium               4.2         mEq/L       3.5 - 5.1
+Chloride                102         mEq/L       98 - 107
+Bicarbonate             25          mEq/L       22 - 29
+Calcium                 9.4         mg/dL       8.5 - 10.5
+Magnesium               2.0         mg/dL       1.7 - 2.2
+Phosphorus              3.5         mg/dL       2.5 - 4.5
+
+IMPRESSION: All electrolytes within normal reference range.

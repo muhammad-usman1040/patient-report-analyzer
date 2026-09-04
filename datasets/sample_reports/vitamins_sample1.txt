@@ -1,0 +1,12 @@
+VITAMIN PANEL
+Patient: Amna Qureshi (Female, 35 yrs)
+Date: 2026-08-31
+Lab: Metro Labs
+
+TEST                            RESULT      UNIT        REFERENCE RANGE
+--------------------------------------------------------------------------
+Vitamin D (25-OH Vitamin D)     9           ng/mL       30 - 100
+Vitamin B12                     145         pg/mL       200 - 900
+Folate                          2.0         ng/mL       2.7 - 17.0
+
+IMPRESSION: Severe Vitamin D deficiency, B12 deficiency, low folate.

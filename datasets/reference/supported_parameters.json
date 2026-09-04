@@ -1,0 +1,42 @@
+{
+  "CBC": {
+    "parameters": ["Hemoglobin", "WBC", "RBC", "Platelets", "Hematocrit", "MCV", "MCH", "MCHC", "Neutrophils", "Lymphocytes", "Monocytes", "Eosinophils", "Basophils"],
+    "aliases": {}
+  },
+  "Glucose": {
+    "parameters": ["Fasting_Glucose", "Random_Glucose", "HbA1c"],
+    "aliases": {}
+  },
+  "Lipid": {
+    "parameters": ["Total_Cholesterol", "LDL", "HDL", "Triglycerides", "VLDL"],
+    "aliases": {}
+  },
+  "LFT": {
+    "parameters": ["ALT", "AST", "ALP", "Total_Bilirubin", "Direct_Bilirubin", "Albumin", "GGT"],
+    "aliases": {}
+  },
+  "KFT": {
+    "parameters": ["Creatinine", "BUN", "Uric_Acid", "eGFR"],
+    "aliases": {"Blood Urea": "BUN", "Urea": "BUN", "BUN": "BUN"}
+  },
+  "Thyroid": {
+    "parameters": ["TSH", "T3", "T4", "Free_T3", "Free_T4"],
+    "aliases": {}
+  },
+  "Urinalysis": {
+    "parameters": ["Urine_Color", "Urine_Appearance", "pH", "Specific_Gravity", "Protein", "Glucose_Urine", "Ketones", "Urine_Blood", "Leukocyte_Esterase", "Nitrites", "Epithelial_Cells", "RBC_Urine", "WBC_Urine", "Casts", "Crystals"],
+    "aliases": {}
+  },
+  "Vitamins": {
+    "parameters": ["Vitamin_D", "Vitamin_B12", "Folate"],
+    "aliases": {}
+  },
+  "Electrolytes": {
+    "parameters": ["Sodium", "Potassium", "Chloride", "Bicarbonate", "Calcium", "Magnesium", "Phosphorus"],
+    "aliases": {}
+  },
+  "Inflammation": {
+    "parameters": ["CRP", "ESR"],
+    "aliases": {}
+  }
+}

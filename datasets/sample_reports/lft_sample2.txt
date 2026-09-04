@@ -1,0 +1,16 @@
+LIVER FUNCTION TESTS (LFT)
+Patient: Aisha Malik (Female, 33 yrs)
+Date: 2026-08-31
+Lab: Islamabad Diagnostic Centre
+
+TEST                            RESULT      UNIT        REFERENCE RANGE
+--------------------------------------------------------------------------
+ALT                             28          U/L         7 - 45
+AST                             22          U/L         10 - 40
+ALP                             88          U/L         44 - 147
+Total Bilirubin                 0.8         mg/dL       0.2 - 1.2
+Direct Bilirubin                0.1         mg/dL       0.0 - 0.3
+Albumin                         4.2         g/dL        3.5 - 5.0
+GGT                             18          U/L         5 - 36
+
+IMPRESSION: All liver function parameters within normal limits.

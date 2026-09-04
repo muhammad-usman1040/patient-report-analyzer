@@ -1,0 +1,12 @@
+GLUCOSE / DIABETES PANEL
+Patient: Ahmed Khan (Male, 52 yrs)
+Date: 2026-08-31
+Lab: Shaukat Khanum Diagnostics
+
+TEST                    RESULT      UNIT        REFERENCE RANGE
+-------------------------------------------------------------------
+Fasting Glucose         148         mg/dL       70 - 100
+HbA1c                   8.2         %           4.0 - 5.6
+Random Glucose          220         mg/dL       70 - 140
+
+INTERPRETATION: Elevated fasting glucose and HbA1c consistent with Diabetes Mellitus.

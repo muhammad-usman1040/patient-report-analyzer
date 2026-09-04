@@ -1,0 +1,14 @@
+THYROID PROFILE
+Patient: Tariq Mehmood (Male, 31 yrs)
+Date: 2026-08-31
+Lab: Punjab Institute of Cardiology Lab
+
+TEST                            RESULT      UNIT        REFERENCE RANGE
+--------------------------------------------------------------------------
+TSH                             0.05        mIU/L       0.4 - 4.0
+T3                              280         ng/dL       80 - 200
+T4                              16.5        ug/dL       5.0 - 12.0
+Free T3                         5.8         pg/mL       2.3 - 4.2
+Free T4                         2.6         ng/dL       0.8 - 1.8
+
+IMPRESSION: Suppressed TSH with elevated T3/T4 — hyperthyroidism suspected.

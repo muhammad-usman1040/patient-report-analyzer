@@ -1,0 +1,13 @@
+KIDNEY FUNCTION TESTS (KFT / RFT)
+Patient: Zubair Alam (Male, 65 yrs)
+Date: 2026-08-31
+Lab: Fauji Foundation Hospital Lab
+
+TEST                            RESULT      UNIT            REFERENCE RANGE
+-----------------------------------------------------------------------------
+Serum Creatinine                2.1         mg/dL           0.74 - 1.35
+BUN (Blood Urea Nitrogen)       38          mg/dL           7 - 20
+Uric Acid                       9.2         mg/dL           3.4 - 7.0
+eGFR                            32          mL/min/1.73m2   60 - 9999
+
+IMPRESSION: Elevated creatinine, BUN — consistent with renal impairment.

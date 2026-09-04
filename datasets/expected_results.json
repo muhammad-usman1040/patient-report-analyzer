@@ -1,0 +1,289 @@
+{
+  "cbc_sample1.txt": {
+    "category": "CBC",
+    "patient": "Male, 35 yrs — Microcytic Anemia",
+    "expected_parsed": {
+      "Hemoglobin":  {"value": 8.5,  "status": "low"},
+      "WBC":         {"value": 6.2,  "status": "normal"},
+      "Platelets":   {"value": 210,  "status": "normal"},
+      "Hematocrit":  {"value": 27,   "status": "low"},
+      "MCV":         {"value": 65,   "status": "low"},
+      "MCH":         {"value": 22,   "status": "low"},
+      "MCHC":        {"value": 30,   "status": "low"},
+      "Neutrophils": {"value": 68,   "status": "normal"},
+      "Lymphocytes": {"value": 25,   "status": "normal"},
+      "Monocytes":   {"value": 5,    "status": "normal"},
+      "Eosinophils": {"value": 2,    "status": "normal"},
+      "Basophils":   {"value": 0,    "status": "normal"}
+    },
+    "expected_condition": "Iron_Deficiency_Anemia",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "cbc_sample2.txt": {
+    "category": "CBC",
+    "patient": "Female, 28 yrs — Leukocytosis/Thrombocytosis",
+    "expected_parsed": {
+      "Hemoglobin":  {"value": 13.8, "status": "normal"},
+      "WBC":         {"value": 14.5, "status": "high"},
+      "Platelets":   {"value": 520,  "status": "high"},
+      "Hematocrit":  {"value": 42,   "status": "normal"},
+      "MCV":         {"value": 88,   "status": "normal"},
+      "MCH":         {"value": 29,   "status": "normal"},
+      "MCHC":        {"value": 34,   "status": "normal"},
+      "Neutrophils": {"value": 82,   "status": "high"},
+      "Lymphocytes": {"value": 12,   "status": "low"},
+      "Monocytes":   {"value": 5,    "status": "normal"},
+      "Eosinophils": {"value": 1,    "status": "normal"},
+      "Basophils":   {"value": 0,    "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "insufficient_evidence"
+  },
+
+  "glucose_sample1.txt": {
+    "category": "Glucose",
+    "patient": "Male, 52 yrs — Diabetes Mellitus",
+    "expected_parsed": {
+      "Fasting_Glucose": {"value": 148, "status": "high"},
+      "HbA1c":           {"value": 8.2, "status": "high"},
+      "Random_Glucose":  {"value": 220, "status": "high"}
+    },
+    "expected_condition": "Diabetes_Mellitus",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "glucose_sample2.txt": {
+    "category": "Glucose",
+    "patient": "Female, 44 yrs — Pre-Diabetes",
+    "expected_parsed": {
+      "Fasting_Glucose": {"value": 108, "status": "high"},
+      "HbA1c":           {"value": 6.1, "status": "high"},
+      "Random_Glucose":  {"value": 165, "status": "high"}
+    },
+    "expected_condition": "Pre_Diabetes",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "lipid_sample1.txt": {
+    "category": "Lipid",
+    "patient": "Male, 60 yrs — Dyslipidemia",
+    "expected_parsed": {
+      "Total_Cholesterol": {"value": 258, "status": "high"},
+      "LDL":               {"value": 168, "status": "high"},
+      "HDL":               {"value": 32,  "status": "low"},
+      "Triglycerides":     {"value": 310, "status": "high"},
+      "VLDL":              {"value": 62,  "status": "high"}
+    },
+    "expected_condition": "Dyslipidemia",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "lipid_sample2.txt": {
+    "category": "Lipid",
+    "patient": "Female, 38 yrs — Normal lipids",
+    "expected_parsed": {
+      "Total_Cholesterol": {"value": 185, "status": "normal"},
+      "LDL":               {"value": 95,  "status": "normal"},
+      "HDL":               {"value": 55,  "status": "normal"},
+      "Triglycerides":     {"value": 130, "status": "normal"},
+      "VLDL":              {"value": 26,  "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  },
+
+  "lft_sample1.txt": {
+    "category": "LFT",
+    "patient": "Male, 48 yrs — Liver Disease",
+    "expected_parsed": {
+      "ALT":              {"value": 98,  "status": "high"},
+      "AST":              {"value": 72,  "status": "high"},
+      "ALP":              {"value": 180, "status": "high"},
+      "Total_Bilirubin":  {"value": 2.4, "status": "high"},
+      "Direct_Bilirubin": {"value": 0.9, "status": "high"},
+      "Albumin":          {"value": 3.2, "status": "low"},
+      "GGT":              {"value": 95,  "status": "high"}
+    },
+    "expected_condition": "Liver_Disease",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "lft_sample2.txt": {
+    "category": "LFT",
+    "patient": "Female, 33 yrs — Normal LFT",
+    "expected_parsed": {
+      "ALT":              {"value": 28,  "status": "normal"},
+      "AST":              {"value": 22,  "status": "normal"},
+      "ALP":              {"value": 88,  "status": "normal"},
+      "Total_Bilirubin":  {"value": 0.8, "status": "normal"},
+      "Direct_Bilirubin": {"value": 0.1, "status": "normal"},
+      "Albumin":          {"value": 4.2, "status": "normal"},
+      "GGT":              {"value": 18,  "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  },
+
+  "kft_sample1.txt": {
+    "category": "KFT",
+    "patient": "Male, 65 yrs — Chronic Kidney Disease",
+    "expected_parsed": {
+      "Creatinine": {"value": 2.1, "status": "high"},
+      "BUN":        {"value": 38,  "status": "high"},
+      "Uric_Acid":  {"value": 9.2, "status": "high"},
+      "eGFR":       {"value": 32,  "status": "low"}
+    },
+    "expected_condition": "Chronic_Kidney_Disease",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "kft_sample2.txt": {
+    "category": "KFT",
+    "patient": "Female, 42 yrs — Normal KFT",
+    "expected_parsed": {
+      "Creatinine": {"value": 0.85, "status": "normal"},
+      "BUN":        {"value": 14,   "status": "normal"},
+      "Uric_Acid":  {"value": 4.8,  "status": "normal"},
+      "eGFR":       {"value": 88,   "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  },
+
+  "thyroid_sample1.txt": {
+    "category": "Thyroid",
+    "patient": "Female, 39 yrs — Hypothyroidism",
+    "expected_parsed": {
+      "TSH":     {"value": 12.8, "status": "high"},
+      "T3":      {"value": 55,   "status": "low"},
+      "T4":      {"value": 3.2,  "status": "low"},
+      "Free_T3": {"value": 1.9,  "status": "low"},
+      "Free_T4": {"value": 0.5,  "status": "low"}
+    },
+    "expected_condition": "Hypothyroidism",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "thyroid_sample2.txt": {
+    "category": "Thyroid",
+    "patient": "Male, 31 yrs — Hyperthyroidism",
+    "expected_parsed": {
+      "TSH":     {"value": 0.05,  "status": "low"},
+      "T3":      {"value": 280,   "status": "high"},
+      "T4":      {"value": 16.5,  "status": "high"},
+      "Free_T3": {"value": 5.8,   "status": "high"},
+      "Free_T4": {"value": 2.6,   "status": "high"}
+    },
+    "expected_condition": "Hyperthyroidism",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "urinalysis_sample1.txt": {
+    "category": "Urinalysis",
+    "patient": "Male, 55 yrs — Abnormal UA",
+    "expected_parsed": {
+      "pH":              {"value": 8.5,  "status": "high"},
+      "Specific_Gravity":{"value": 1.028,"status": "normal"},
+      "Protein":         {"value": 45,   "status": "high"},
+      "Glucose_Urine":   {"value": 30,   "status": "high"},
+      "RBC_Urine":       {"value": 8,    "status": "high"},
+      "WBC_Urine":       {"value": 18,   "status": "high"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "insufficient_evidence"
+  },
+
+  "urinalysis_sample2.txt": {
+    "category": "Urinalysis",
+    "patient": "Female, 27 yrs — Normal UA",
+    "expected_parsed": {
+      "pH":              {"value": 6.0,   "status": "normal"},
+      "Specific_Gravity":{"value": 1.015, "status": "normal"},
+      "Protein":         {"value": 5,     "status": "normal"},
+      "Glucose_Urine":   {"value": 0,     "status": "normal"},
+      "RBC_Urine":       {"value": 0,     "status": "normal"},
+      "WBC_Urine":       {"value": 2,     "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  },
+
+  "vitamins_sample1.txt": {
+    "category": "Vitamins",
+    "patient": "Female, 35 yrs — Vitamin Deficiencies",
+    "expected_parsed": {
+      "Vitamin_D":   {"value": 9,   "status": "low"},
+      "Vitamin_B12": {"value": 145, "status": "low"},
+      "Folate":      {"value": 2.0, "status": "low"}
+    },
+    "expected_condition": "Vitamin_D_Deficiency",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "vitamins_sample2.txt": {
+    "category": "Vitamins",
+    "patient": "Male, 29 yrs — Normal vitamins",
+    "expected_parsed": {
+      "Vitamin_D":   {"value": 45,  "status": "normal"},
+      "Vitamin_B12": {"value": 420, "status": "normal"},
+      "Folate":      {"value": 8.5, "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  },
+
+  "electrolytes_sample1.txt": {
+    "category": "Electrolytes",
+    "patient": "Male, 70 yrs — Electrolyte Imbalance",
+    "expected_parsed": {
+      "Sodium":      {"value": 128, "status": "low"},
+      "Potassium":   {"value": 6.2, "status": "high"},
+      "Chloride":    {"value": 92,  "status": "low"},
+      "Bicarbonate": {"value": 18,  "status": "low"},
+      "Calcium":     {"value": 7.8, "status": "low"},
+      "Magnesium":   {"value": 1.2, "status": "low"},
+      "Phosphorus":  {"value": 5.2, "status": "high"}
+    },
+    "expected_condition": "Electrolyte_Imbalance",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "electrolytes_sample2.txt": {
+    "category": "Electrolytes",
+    "patient": "Female, 45 yrs — Normal electrolytes",
+    "expected_parsed": {
+      "Sodium":      {"value": 140, "status": "normal"},
+      "Potassium":   {"value": 4.2, "status": "normal"},
+      "Chloride":    {"value": 102, "status": "normal"},
+      "Bicarbonate": {"value": 25,  "status": "normal"},
+      "Calcium":     {"value": 9.4, "status": "normal"},
+      "Magnesium":   {"value": 2.0, "status": "normal"},
+      "Phosphorus":  {"value": 3.5, "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  },
+
+  "inflammation_sample1.txt": {
+    "category": "Inflammation",
+    "patient": "Male, 58 yrs — Inflammation",
+    "expected_parsed": {
+      "CRP": {"value": 48, "status": "high"},
+      "ESR": {"value": 65, "status": "high"}
+    },
+    "expected_condition": "Inflammation_Or_Infection",
+    "expected_result_state": "possible_conditions"
+  },
+
+  "inflammation_sample2.txt": {
+    "category": "Inflammation",
+    "patient": "Female, 24 yrs — Normal inflammatory markers",
+    "expected_parsed": {
+      "CRP": {"value": 3, "status": "normal"},
+      "ESR": {"value": 8, "status": "normal"}
+    },
+    "expected_condition": null,
+    "expected_result_state": "all_normal"
+  }
+}

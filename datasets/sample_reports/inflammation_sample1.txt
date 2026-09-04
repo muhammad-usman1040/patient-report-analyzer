@@ -1,0 +1,11 @@
+INFLAMMATION MARKERS (CRP / ESR)
+Patient: Shahid Iqbal (Male, 58 yrs)
+Date: 2026-08-31
+Lab: Sheikh Zayed Hospital
+
+TEST                                RESULT      UNIT        REFERENCE RANGE
+-----------------------------------------------------------------------------
+C-Reactive Protein (CRP)           48          mg/L        0 - 10
+ESR (Erythrocyte Sedimentation Rate) 65         mm/hr       0 - 15
+
+CLINICAL NOTE: Markedly elevated CRP and ESR suggest systemic inflammation or infection.
